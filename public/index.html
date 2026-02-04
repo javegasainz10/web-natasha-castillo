@@ -43,6 +43,30 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
+        /* Estilos inline para los íconos de reemplazo */
+        .icon-placeholder-box {
+            width: 100%;
+            height: 350px; /* Altura similar a las fotos */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 10px 10px 0px var(--secondary);
+            border: 1px solid #eee;
+        }
+        
+        /* Ajuste específico para cuando el fondo de la sección es blanco, para que destaque */
+        .section:not(.bg-cream) .icon-placeholder-box {
+            background-color: var(--bg-cream);
+        }
+
+        .icon-placeholder-box i {
+            font-size: 5rem;
+            color: var(--secondary);
+            opacity: 0.8;
+        }
+
         @media (max-width: 768px) {
             
             /* --- 1. HERO (PORTADA) --- */
@@ -142,14 +166,10 @@
                 border-radius: 8px;
             }
 
-            /* 4. EXCEPCIÓN: IMAGEN DE CIENCIA */
-            #ciencia .image-box img {
-                height: 400px !important; 
-                width: 90% !important; 
-                margin: 0 auto; 
-                display: block;
-                object-fit: cover !important;
-                object-position: center center !important;
+            /* Ajuste para los íconos en móvil */
+            .icon-placeholder-box {
+                height: 250px; /* Un poco más chicos en móvil */
+                width: 100%;
             }
 
             /* 5. CONTACTO & WHATSAPP */
@@ -300,7 +320,9 @@
     <section id="filosofia" class="section bg-cream">
         <div class="container split-layout reverse">
             <div class="image-box">
-                <img src="img/tratamientos-faciales-naturales-salta.jpg" alt="Cuidado de la piel tratamientos faciales naturales" loading="lazy">
+                <div class="icon-placeholder-box">
+                    <i class="fa-solid fa-spa"></i>
+                </div>
             </div>
             <div class="text-box">
                 <h3 class="subtitle">Nuestra Filosofía</h3>
@@ -317,7 +339,9 @@
 
     <section id="ciencia" class="section container split-layout">
         <div class="image-box">
-             <img src="img/medicina-estetica-avanzada-salta.jpg" alt="Estética Medica avanzada y Ciencia en Salta" loading="lazy">
+            <div class="icon-placeholder-box">
+                <i class="fa-solid fa-microscope"></i>
+            </div>
         </div>
         <div class="text-box">
             <h3 class="subtitle">Estética Médica Avanzada</h3>
@@ -385,10 +409,6 @@
                     <img src="img/before-after/rinomodelacion-sin-cirugia-antes-despues.jpg" alt="Antes y despues rinomodelacion salta" loading="lazy">
                     <div class="caption">Rinomodelación</div>
                 </div>
-                <div class="carousel-item">
-                    <img src="img/before-after/diseno-labios-salta- antes-despues.jpg" alt="Antes y despues recuperación capilar Salta" loading="lazy">
-                    <div class="caption">Diseño de labios</div>
-                </div>
                  <div class="carousel-item placeholder-item">
                     <div class="placeholder-box" style="height: 300px; display: flex; align-items: center; justify-content: center; background: #f9f9f9; color: #777;">
                         Más resultados en consulta
@@ -419,18 +439,6 @@
                     </div>
                     <div class="carousel-item landscape">
                         <img src="img/gallery/consultorio-estetico-salta-ingreso.jpg" alt="Sala de espera consultorios de estetica Salta" loading="lazy">
-                    </div>
-                    <div class="carousel-item landscape">
-                        <img src="img/gallery/consultorio-medico-estetico-equipamiento.jpg" alt="Equipamiento medicina estetica Salta" loading="lazy">
-                    </div>
-                    <div class="carousel-item landscape">
-                         <img src="img/gallery/consultorio-medico-estetico-equipamientos.jpg" alt="Equipamiento medicina dermatologica Salta" loading="lazy">
-                    </div>
-                    <div class="carousel-item landscape">
-                         <img src="img/gallery/consultorio-atencion-dermatologa.jpg" alt="Dermatologa Salta" loading="lazy">
-                    </div>
-                    <div class="carousel-item landscape">
-                         <img src="img/gallery/consultorio-dermatologia-salta-espera.jpg" alt="Dermatologia y estetica Salta" loading="lazy">
                     </div>
                 </div>
                 <button class="carousel-btn next" id="gal-next"><i class="fas fa-chevron-right"></i></button>
