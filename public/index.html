@@ -43,28 +43,37 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
-        /* Estilos inline para los íconos de reemplazo */
-        .icon-placeholder-box {
+        /* --- ESTILOS NUEVOS PARA ÍCONOS ESTÉTICOS --- */
+        .aesthetic-container {
             width: 100%;
-            height: 350px; /* Altura similar a las fotos */
+            height: 350px; /* Mantiene el balance visual */
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: var(--white);
-            border-radius: 8px;
-            box-shadow: 10px 10px 0px var(--secondary);
-            border: 1px solid #eee;
-        }
-        
-        /* Ajuste específico para cuando el fondo de la sección es blanco, para que destaque */
-        .section:not(.bg-cream) .icon-placeholder-box {
-            background-color: var(--bg-cream);
         }
 
-        .icon-placeholder-box i {
+        .aesthetic-circle {
+            width: 220px;
+            height: 220px;
+            /* Usamos el color secundario (rosa palo) con mucha transparencia */
+            background-color: rgba(197, 157, 155, 0.15); 
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.4s ease, background-color 0.4s ease;
+        }
+
+        .aesthetic-circle i {
             font-size: 5rem;
-            color: var(--secondary);
+            color: var(--secondary); /* Color del ícono */
             opacity: 0.8;
+        }
+
+        /* Pequeño efecto al pasar el mouse para darle vida */
+        .aesthetic-circle:hover {
+            transform: scale(1.05);
+            background-color: rgba(197, 157, 155, 0.25);
         }
 
         @media (max-width: 768px) {
@@ -166,10 +175,17 @@
                 border-radius: 8px;
             }
 
-            /* Ajuste para los íconos en móvil */
-            .icon-placeholder-box {
-                height: 250px; /* Un poco más chicos en móvil */
-                width: 100%;
+            /* Ajuste para los íconos estéticos en móvil */
+            .aesthetic-container {
+                height: 220px;
+                margin-bottom: 20px;
+            }
+            .aesthetic-circle {
+                width: 180px;
+                height: 180px;
+            }
+            .aesthetic-circle i {
+                font-size: 4rem;
             }
 
             /* 5. CONTACTO & WHATSAPP */
@@ -320,8 +336,10 @@
     <section id="filosofia" class="section bg-cream">
         <div class="container split-layout reverse">
             <div class="image-box">
-                <div class="icon-placeholder-box">
-                    <i class="fa-solid fa-spa"></i>
+                <div class="aesthetic-container">
+                    <div class="aesthetic-circle">
+                        <i class="fa-solid fa-spa"></i>
+                    </div>
                 </div>
             </div>
             <div class="text-box">
@@ -339,8 +357,10 @@
 
     <section id="ciencia" class="section container split-layout">
         <div class="image-box">
-            <div class="icon-placeholder-box">
-                <i class="fa-solid fa-microscope"></i>
+             <div class="aesthetic-container">
+                <div class="aesthetic-circle">
+                    <i class="fa-solid fa-microscope"></i>
+                </div>
             </div>
         </div>
         <div class="text-box">
