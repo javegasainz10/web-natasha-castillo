@@ -29,6 +29,7 @@ body {
     color: var(--text-grey);
     line-height: 1.6;
     background-color: var(--white);
+    -webkit-font-smoothing: antialiased;
 }
 
 img {
@@ -50,30 +51,6 @@ a {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-}
-
-/* --- Tipografía y Utilidades --- */
-.subtitle {
-    color: var(--secondary);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.9rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-}
-
-h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-}
-
-.section {
-    padding: 80px 0;
-}
-
-.bg-cream {
-    background-color: var(--bg-cream);
 }
 
 /* --- Botones --- */
@@ -102,23 +79,9 @@ h2 {
     font-weight: 700;
     border: 2px solid var(--primary);
     margin-left: 10px;
-    text-align: center;
 }
 
-.btn-outline:hover {
-    background-color: var(--primary);
-    color: var(--white);
-}
-
-/* --- Top Banner & Navbar --- */
-.top-banner {
-    background-color: var(--black);
-    color: var(--white);
-    text-align: center;
-    padding: 8px 0;
-    font-size: 0.85rem;
-}
-
+/* --- Navbar --- */
 .navbar {
     background-color: rgba(255, 255, 255, 0.95);
     padding: 15px 0;
@@ -134,35 +97,7 @@ h2 {
     align-items: center;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.logo img { height: 50px; }
-
-.logo-text {
-    font-family: var(--font-heading);
-    font-weight: 700;
-    color: var(--primary);
-    letter-spacing: 1px;
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 30px;
-}
-
-.menu-toggle {
-    display: none;
-    font-size: 1.5rem;
-    color: var(--primary);
-    cursor: pointer;
-}
-
-/* --- Hero Section (Desktop) --- */
+/* --- HERO SECTION (Desktop con Fix de Imagen Pesada) --- */
 .hero {
     position: relative;
     height: 90vh;
@@ -170,6 +105,7 @@ h2 {
     align-items: center;
     background-color: var(--bg-cream);
     overflow: hidden;
+    isolation: isolate; /* Crea un nuevo contexto de apilamiento */
 }
 
 .hero-image-container {
@@ -181,30 +117,46 @@ h2 {
     z-index: 1;
 }
 
-.hero-image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.hero-image-container .overlay {
+/* El degradado se aplica como pseudo-elemento para forzar el renderizado */
+.hero-image-container::after {
+    content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, var(--bg-cream) 10%, rgba(246,236,227,0) 100%);
+    inset: 0;
+    background: linear-gradient(90deg, var(--bg-cream) 0%, rgba(246,236,227,0) 100%);
     z-index: 2;
     pointer-events: none;
 }
 
+.hero-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    will-change: transform; /* Optimización de GPU */
+}
+
 .hero-content {
     position: relative;
-    z-index: 3;
+    z-index: 10;
     max-width: 600px;
 }
 
-/* --- Estilos de Iconos Estéticos --- */
+/* --- Secciones y Layouts --- */
+.section { padding: 80px 0; }
+.bg-cream { background-color: var(--bg-cream); }
+
+.split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.image-box img {
+    border-radius: 8px;
+    box-shadow: 20px 20px 0px var(--secondary);
+}
+
+/* --- Aesthetic Circles --- */
 .aesthetic-container {
     width: 100%;
     height: 350px;
@@ -221,64 +173,13 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: 0.4s;
 }
 
-.aesthetic-circle i {
-    font-size: 5rem;
-    color: var(--secondary);
-}
-
-/* --- Layouts Partidos --- */
-.split-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-}
-
-.image-box img {
-    border-radius: 8px;
-    box-shadow: 20px 20px 0px var(--secondary);
-}
-
-/* --- Servicios & Carruseles --- */
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-}
-
-.service-card {
-    background: var(--white);
-    padding: 30px;
-    border-radius: 8px;
-    text-align: center;
-    border: 1px solid #eee;
-}
-
-.carousel-track {
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    scrollbar-width: none;
-}
-
-.carousel-track::-webkit-scrollbar { display: none; }
+.aesthetic-circle i { font-size: 5rem; color: var(--secondary); }
 
 /* --- Footer & WhatsApp --- */
-.footer {
-    background-color: var(--primary);
-    color: var(--bg-cream);
-    padding: 60px 0 0;
-}
-
-.footer-bottom {
-    background-color: var(--black);
-    text-align: center;
-    padding: 20px;
-    font-size: 0.8rem;
-}
+.footer { background-color: var(--primary); color: var(--bg-cream); padding: 60px 0 0; }
+.footer-bottom { background-color: var(--black); text-align: center; padding: 20px; }
 
 .whatsapp-float {
     position: fixed;
@@ -296,95 +197,65 @@ h2 {
     z-index: 10000;
 }
 
-/* --- MOBILE RESPONSIVE (FIX DEFINITIVO) --- */
+/* --- MOBILE RESPONSIVE (EL FIX DEFINITIVO) --- */
 @media (max-width: 768px) {
     
     .hero {
-        display: flex;
-        flex-direction: column;
+        display: block; /* Rompemos el flex para evitar colapsos */
         height: auto;
-        padding-top: 0 !important;
         background-color: var(--bg-cream);
     }
 
-    /* Contenedor de imagen en móvil */
     .hero-image-container {
         position: relative;
         width: 100%;
-        height: 400px !important;
-        order: -1;
-        margin-bottom: 0;
+        height: 400px !important; /* Altura forzada en móvil */
+        display: block;
         z-index: 1;
-        overflow: hidden;
     }
 
     .hero-image-container img {
-        width: 100%;
         height: 100% !important;
-        object-fit: cover !important;
         object-position: center top;
-        display: block;
     }
 
-    /* FIX: Overlay vertical reforzado para móvil */
-    .hero-image-container .overlay {
-        display: block !important;
-        position: absolute !important;
-        top: auto !important;
-        bottom: 0 !important;
-        left: 0;
-        width: 100%;
-        height: 180px !important; /* Altura del difuminado */
+    /* Redefinimos el degradado de Horizontal a Vertical para móvil */
+    .hero-image-container::after {
         background: linear-gradient(to bottom, 
             rgba(246, 236, 227, 0) 0%, 
-            rgba(246, 236, 227, 0.7) 50%, 
-            rgba(246, 236, 227, 1) 100%) !important;
-        z-index: 10 !important;
+            rgba(246, 236, 227, 0.6) 70%, 
+            var(--bg-cream) 100%) !important;
+        z-index: 5;
     }
 
-    /* Ajuste del contenido para que se una al degradado */
     .hero-content {
-        padding: 40px 20px;
+        padding: 40px 20px 60px;
         width: 100%;
-        background-color: var(--bg-cream); /* Fondo sólido igual al final del degradado */
-        margin-top: -5px; /* Elimina cualquier gap de un pixel */
-        z-index: 5;
+        text-align: center;
+        background-color: var(--bg-cream);
+        margin-top: -5px; /* Evita que se vea una línea entre la imagen y el texto */
     }
 
     .hero-buttons {
         display: flex;
         flex-direction: column;
         gap: 15px;
-        width: 100%;
-        margin-top: 25px !important;
     }
 
-    .hero-buttons .btn-primary, 
-    .hero-buttons .btn-outline {
-        width: 100%;
-        margin: 0;
-        padding: 14px 0;
-    }
+    .btn-outline { margin-left: 0; }
 
-    /* Layouts Partidos en Móvil */
+    /* Layouts en móvil */
     .split-layout {
         grid-template-columns: 1fr;
         gap: 30px;
     }
-
+    
     .split-layout.reverse .image-box { order: 0; }
-
+    
     .image-box img {
-        height: auto;
-        max-height: 400px;
-        object-fit: cover;
         box-shadow: 10px 10px 0px var(--secondary);
     }
 
-    /* Ajustes visuales extra móvil */
-    h1 { font-size: 1rem !important; }
-    .h2-lookalike { font-size: 2.2rem !important; }
-    
-    .nav-links { display: none; }
-    .menu-toggle { display: block; }
+    .aesthetic-container { height: 200px; }
+    .aesthetic-circle { width: 160px; height: 160px; }
 }
