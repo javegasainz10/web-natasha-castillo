@@ -1,48 +1,4 @@
-<!DOCTYPE html>
-<html lang="es-AR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Dra. Natasha Castillo | Dermatóloga en Salta | Estética Médica y Botox</title>
-    
-    <meta name="description" content="Dra. Natasha Castillo, dermatóloga en Salta. Especialista en medicina estética, armonización facial, Botox, ácido hialurónico y tratamientos faciales clínicos. Santiago del Estero 121.">
-    
-    <meta name="keywords" content="dermatologa salta, dermatologia, estetica medica, botox, acido hialuronico, armonizacion facial, tratamientos faciales, dermatologos en salta, rinomodelacion">
-
-    <meta property="og:title" content="Dra. Natasha Castillo - Dermatología y Estética en Salta">
-    <meta property="og:description" content="Especialista en cuidado de la piel, Botox y Armonización Facial. Tu piel en manos expertas.">
-    <meta property="og:image" content="https://dranatashacastillo.com/img/dermatologa-en-salta-estetica-facial-portada.jpg">
-    <meta property="og:url" content="https://dranatashacastillo.com/">
-    <meta property="og:type" content="website">
-
-    <link rel="apple-touch-icon" sizes="57x57" href="img/favicons/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="img/favicons/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="img/favicons/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="img/favicons/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="img/favicons/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="img/favicons/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="img/favicons/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="img/favicons/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="img/favicons/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="img/favicons/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicons/favicon-16x16.png">
-    <link rel="manifest" href="img/favicons/manifest.json">
-    
-    <meta name="msapplication-TileColor" content="#591820">
-    <meta name="msapplication-TileImage" content="img/favicons/ms-icon-144x144.png">
-    <meta name="theme-color" content="#591820">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <link rel="stylesheet" href="css/style.css">
-
-    <style>
+<style>
         /* --- ESTILOS PARA ÍCONOS ESTÉTICOS (Reemplazo de imágenes) --- */
         .aesthetic-container {
             width: 100%;
@@ -85,6 +41,7 @@
                 padding-bottom: 40px;
                 text-align: center;
                 display: flex;
+                position: relative; /* Asegurar contexto de apilamiento */
             }
 
             .hero-image-container {
@@ -95,27 +52,41 @@
                 order: -1; 
                 margin-bottom: 20px;
                 margin-top: 0 !important;
+                /* IMPORTANTE: Esto evita que el contenido se salga */
+                overflow: hidden; 
             }
             
             .hero-image-container img {
                 width: 100%;
                 height: auto !important; 
-                object-fit: contain; 
+                object-fit: cover; /* Cambiado a cover para asegurar llenado */
                 display: block;
+                position: relative;
+                z-index: 1; /* Nivel 1 */
             }
 
-            /* --- CORRECCIÓN DEL DIFUMINADO VERTICAL --- */
+            /* --- CORRECCIÓN DEL DIFUMINADO VERTICAL (V2) --- */
             .hero-image-container .overlay {
-                position: absolute !important; /* Forzar posición absoluta */
-                top: 0;
+                content: '';
+                position: absolute !important;
+                bottom: 0; /* Anclado abajo */
                 left: 0;
                 width: 100%;
-                height: 100%;
-                z-index: 2; /* Asegurar que esté ENCIMA de la imagen */
+                height: 50%; /* Ocupa la mitad inferior de la foto */
+                z-index: 10; /* Muy por encima de la imagen */
+                pointer-events: none;
                 
-                /* Degradado: Transparente arriba -> Color Crema sólido abajo */
-                background: linear-gradient(to bottom, rgba(246,236,227,0) 60%, var(--bg-cream) 100%) !important;
-                pointer-events: none; /* Permite tocar la imagen si fuera necesario */
+                /* Degradado compatible y forzado: Transparente -> Crema (#f6ece3) */
+                background: linear-gradient(
+                    180deg, 
+                    rgba(246, 236, 227, 0) 0%, 
+                    rgba(246, 236, 227, 0.8) 60%, 
+                    rgba(246, 236, 227, 1) 100%
+                ) !important;
+                
+                /* Truco para forzar renderizado en móviles antiguos/Safari */
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0);
             }
 
             .hero-content { padding: 0 20px; width: 100%; }
@@ -233,327 +204,3 @@
             .h2-lookalike { font-size: 2.2rem !important; }
         }
     </style>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Dermatologist",
-      "name": "Dra. Natasha Castillo",
-      "image": "https://dranatashacastillo.com/img/dra-natasha-castillo-logo-dermatologia.png",
-      "@id": "https://dranatashacastillo.com",
-      "url": "https://dranatashacastillo.com",
-      "telephone": "+5493872206225",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Santiago del Estero 121, Oficina 2 A",
-        "addressLocality": "Salta",
-        "postalCode": "4400",
-        "addressCountry": "AR"
-      },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": -24.7821, 
-        "longitude": -65.4232
-      },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday"
-        ],
-        "opens": "09:00",
-        "closes": "20:00"
-      },
-      "priceRange": "$$",
-      "sameAs": [
-        "https://www.instagram.com/dra.natashacastillo/"
-      ]
-    }
-    </script>
-</head>
-<body>
-
-    <div class="top-banner">
-        <p style="display: flex; justify-content: center; align-items: center; gap: 8px; margin: 0;">
-            <img src="https://flagcdn.com/w20/us.png" srcset="https://flagcdn.com/w40/us.png 2x" width="20" height="15" alt="USA Flag">
-            We speak English - English spoken consultations available.
-        </p>
-    </div>
-
-    <nav class="navbar">
-        <div class="container nav-container">
-            <a href="#" class="logo">
-                <img src="img/dra-natasha-castillo-logo-dermatologia.png" alt="Dra. Natasha Castillo Dermatologa Salta Logo">
-                <span class="logo-text">DRA. NATASHA CASTILLO</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#sobre-mi">Dra. Castillo</a></li>
-                <li><a href="#filosofia">Filosofía</a></li>
-                <li><a href="#servicios">Tratamientos</a></li>
-                <li><a href="#casos">Resultados</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-            <a href="https://wa.me/5493872206225" class="btn-primary" target="_blank" rel="noopener">Agendar Turno</a>
-            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
-        </div>
-    </nav>
-
-    <header class="hero">
-        <div class="hero-image-container">
-            <img src="img/dermatologa-en-salta-estetica-facial-portada.jpg" alt="Dra. Natasha Castillo Dermatologa especialista en estetica medica y botox">
-            <div class="overlay"></div>
-        </div>
-        <div class="hero-content container">
-            <h1 class="animate-fade-up" style="font-size: 1.2rem; text-transform: uppercase; color: var(--accent); letter-spacing: 2px; font-family: var(--font-body);">
-                Dermatología y Estética en Salta
-            </h1>
-            <p class="h2-lookalike animate-fade-up delay-1" style="font-family: var(--font-heading); font-size: 3.5rem; color: var(--primary); margin-bottom: 20px; line-height: 1.2;">
-                Estética y salud <br>en cada tratamiento
-            </p>
-            
-            <p class="animate-fade-up delay-2">Diagnóstico preciso, <strong style="color: var(--primary-light);">Botox</strong>, <strong style="color: var(--primary-light);">Ácido Hialurónico</strong> y tratamientos integrales para restaurar la salud de tu piel.</p>
-            
-            <div class="hero-buttons animate-fade-up delay-3" style="margin-top: 40px;">
-                <a href="https://wa.me/5493872206225" class="btn-primary" target="_blank" rel="noopener">Solicitar Turno</a>
-                <a href="#servicios" class="btn-outline">Ver Tratamientos</a>
-            </div>
-        </div>
-    </header>
-
-    <section id="sobre-mi" class="section container split-layout">
-        <div class="image-box">
-            <img src="img/dra-natasha-castillo-especialista-piel.jpg" alt="Dra Natasha Castillo Dermatologa UBA especialista en estetica" loading="lazy">
-        </div>
-        <div class="text-box">
-            <h3 class="subtitle">La Especialista</h3>
-            <h2>Dra. Natasha Castillo</h2>
-            
-            <p style="margin-bottom: 25px;">Soy <strong style="color: var(--accent);">dermatóloga</strong>, especializada en la <strong>Universidad de Buenos Aires y en el Hospital Muñiz</strong>.</p>
-            
-            <p style="margin-bottom: 25px;">Realicé una diplomatura en medicina estética en la UAI y una rotación formativa en el prestigioso <strong>Hospital Saint-Louis de Paris</strong>.</p>
-            
-            <p style="margin-bottom: 25px;">Hoy, vuelco toda esa experiencia en brindarte un diagnóstico certero y tratamientos de vanguardia para resaltar tu belleza natural.</p>
-
-            <p>Te espero en <strong>Salta Capital</strong> para acompañarte en el proceso de cuidar tu piel.</p>
-        </div>
-    </section>
-
-    <section id="filosofia" class="section bg-cream">
-        <div class="container split-layout reverse">
-            <div class="image-box">
-                <div class="aesthetic-container">
-                    <div class="aesthetic-circle">
-                        <i class="fa-solid fa-spa"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="text-box">
-                <h3 class="subtitle">Nuestra Filosofía</h3>
-                <h2>Cuidado Integral de la Piel</h2>
-                <p style="margin-bottom: 25px;">En nuestra consulta dermatológica nos dedicamos al diagnóstico y tratamiento integral.</p>
-                <p style="margin-bottom: 25px;">Desde condiciones como el acné hasta la <strong>armonización facial</strong> compleja, brindamos un enfoque profesional. Porque cada piel es única, cada tratamiento con <strong>ácido hialurónico</strong> o toxina botulínica se personaliza al máximo.</p>
-                
-                <blockquote style="border-left: 3px solid var(--primary); padding-left: 15px; margin-top: 20px; font-size: 1.1rem; font-weight: bold; color: var(--primary);">
-                    "Medicina estética responsable que respeta tus rasgos."
-                </blockquote>
-            </div>
-        </div>
-    </section>
-
-    <section id="ciencia" class="section container split-layout">
-        <div class="image-box">
-             <div class="aesthetic-container">
-                <div class="aesthetic-circle">
-                    <i class="fa-solid fa-microscope"></i>
-                </div>
-            </div>
-        </div>
-        <div class="text-box">
-            <h3 class="subtitle">Estética Médica Avanzada</h3>
-            <h2>Ciencia y belleza, un solo enfoque</h2>
-            
-            <p style="margin-bottom: 25px;">Te ofrecemos un enfoque innovador en <strong style="color: var(--accent);">medicina estética</strong>, fusionando la precisión científica con el arte del cuidado personal.</p>
-            
-            <p style="margin-bottom: 25px;">Nuestra misión es clara: brindarte tratamientos personalizados que no solo mejoren la apariencia de tu piel y suavicen los signos del envejecimiento, sino que te hagan sentir mejor con vos misma.</p>
-            
-            <p>Nuestro objetivo fundamental es preservar tu <strong style="color: var(--primary-light);">naturalidad</strong>. Utilizamos tratamientos faciales y corporales mínimamente invasivos, respetando siempre tu esencia única.</p>
-        </div>
-    </section>
-
-    <section id="servicios" class="section bg-cream">
-        <div class="container">
-            <div class="section-header">
-                <h3 class="subtitle">Nuestros Procedimientos</h3>
-                <h2>Tratamientos Dermatológicos y Estéticos</h2>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <i class="fa-solid fa-user-doctor"></i>
-                    <h3>Dermatología Clínica</h3>
-                    <p>Diagnóstico experto en <strong>enfermedades de la piel</strong>, <strong>acné severo</strong>, <strong>rosácea</strong>, alergias y <strong>control de lunares</strong>.</p>
-                </div>
-                
-                <div class="service-card">
-                    <i class="fa-solid fa-syringe"></i>
-                    <h3>Tratamientos Estéticos</h3>
-                    <p><strong>Armonización Facial</strong>, aplicación de <strong>Toxina Botulínica (Botox)</strong>, Rellenos con <strong>Ácido Hialurónico</strong>, Bioestimuladores y <strong>Rinomodelación</strong>.</p>
-                </div>
-                
-                <div class="service-card">
-                    <i class="fa-solid fa-spa"></i>
-                    <h3>Recuperación Capilar</h3>
-                    <p>Tratamientos médicos específicos (<strong>Mesoterapia</strong>) para detener la <strong>caída del cabello</strong> y fortalecer el folículo.</p>
-                </div>
-                
-                <div class="service-card">
-                    <i class="fa-solid fa-suitcase-medical"></i>
-                    <h3>Cirugía Dermatológica</h3>
-                    <p>Eliminación de <strong>verrugas</strong>, extirpación de <strong>quistes</strong>, <strong>lunares</strong> y lesiones cutáneas con técnicas estéticas.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="casos" class="section container">
-        <div class="section-header">
-            <h3 class="subtitle">Evidencia Real</h3>
-            <h2>Antes y Después</h2>
-        </div>
-        <div class="carousel-wrapper">
-            <button class="carousel-btn prev" id="ba-prev"><i class="fas fa-chevron-left"></i></button>
-            <div class="carousel-track" id="ba-track">
-                <div class="carousel-item">
-                    <img src="img/before-after/diseno-labios-salta.jpg" alt="Antes y despues diseño de labios Salta" loading="lazy">
-                    <div class="caption">Diseño de labios</div>
-                </div>
-                <div class="carousel-item">
-                    <img src="img/before-after/recuperacion-capilar-salta.jpeg" alt="Antes y despues recuperación capilar Salta" loading="lazy">
-                    <div class="caption">Recuperación capilar</div>
-                </div>
-                <div class="carousel-item">
-                    <img src="img/before-after/rinomodelacion-sin-cirugia-antes-despues.jpg" alt="Antes y despues rinomodelacion salta" loading="lazy">
-                    <div class="caption">Rinomodelación</div>
-                </div>
-                 <div class="carousel-item placeholder-item">
-                    <div class="placeholder-box" style="height: 300px; display: flex; align-items: center; justify-content: center; background: #f9f9f9; color: #777;">
-                        Más resultados en consulta
-                    </div>
-                </div>
-            </div>
-            <button class="carousel-btn next" id="ba-next"><i class="fas fa-chevron-right"></i></button>
-        </div>
-    </section>
-
-    <section class="section bg-cream">
-        <div class="container">
-            <div class="section-header">
-                <h3 class="subtitle">El Espacio</h3>
-                <h2>Consultorio en Salta</h2>
-            </div>
-            <div class="carousel-wrapper">
-                <button class="carousel-btn prev" id="gal-prev"><i class="fas fa-chevron-left"></i></button>
-                <div class="carousel-track" id="gal-track">
-                    <div class="carousel-item landscape">
-                        <img src="img/gallery/consultorio-dermatologico-salta-recepcion.jpg" alt="Recepcion consultorio dermatologico Natasha Castillo" loading="lazy">
-                    </div>
-                    <div class="carousel-item landscape">
-                        <img src="img/gallery/consultorio-atencion-dermatologia.jpg" alt="Consultorio dermatologico Salta" loading="lazy">
-                    </div>
-                    <div class="carousel-item landscape">
-                        <img src="img/gallery/sala-procedimientos-esteticos-salta.jpg" alt="Sala de procedimientos esteticos Salta" loading="lazy">
-                    </div>
-                    <div class="carousel-item landscape">
-                        <img src="img/gallery/consultorio-estetico-salta-ingreso.jpg" alt="Sala de espera consultorios de estetica Salta" loading="lazy">
-                    </div>
-                </div>
-                <button class="carousel-btn next" id="gal-next"><i class="fas fa-chevron-right"></i></button>
-            </div>
-        </div>
-    </section>
-
-    <section id="contacto" class="section contact-section">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h3 class="subtitle">Te esperamos</h3>
-                    <h2>Contacto y Ubicación</h2>
-                    
-                    <div class="info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h3>Dirección</h3>
-                            <p>Santiago del Estero 121, Oficina 2 "A"<br>Salta Capital, Argentina</p>
-                        </div>
-                    </div>
-                    
-                    <div class="info-item">
-                        <a href="https://wa.me/5493872206225" target="_blank" rel="noopener" style="color: var(--primary);">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                        <div>
-                            <h3>WhatsApp y Turnos</h3>
-                            <p><a href="https://wa.me/5493872206225" target="_blank" rel="noopener">+54 9 387 220 6225</a></p>
-                        </div>
-                    </div>
-
-                    <div class="info-item">
-                        <a href="mailto:dranatashacastillo@gmail.com" style="color: var(--primary);">
-                            <i class="far fa-envelope"></i>
-                        </a>
-                        <div>
-                            <h3>Email</h3>
-                            <p><a href="mailto:dranatashacastillo@gmail.com">dranatashacastillo@gmail.com</a></p>
-                        </div>
-                    </div>
-
-                    <div class="social-links-contact" style="margin-top: 30px;">
-                        <a href="https://www.instagram.com/dra.natashacastillo/" target="_blank" rel="noopener" aria-label="Instagram Dra Natasha Castillo" style="font-size: 2rem; color: var(--primary); margin-right: 20px;"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/5493872206225" target="_blank" rel="noopener" aria-label="Whatsapp Dra Natasha Castillo" style="font-size: 2rem; color: var(--primary); margin-right: 20px;"><i class="fab fa-whatsapp"></i></a>
-                        <a href="mailto:dranatashacastillo@gmail.com" target="_blank" rel="noopener" aria-label="Email Dra Natasha Castillo" style="font-size: 2rem; color: var(--primary);"><i class="far fa-envelope"></i></a>
-                    </div>
-                </div>
-                <div class="map-container">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3622.099393792036!2d-65.410714!3d-24.792558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x941bc3a4369527af%3A0x6700000000000000!2sSantiago%20del%20Estero%20121%2C%20A4400%20Salta!5e0!3m2!1ses!2sar!4v1700000000000" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" title="Ubicación Consultorio Dra Natasha Castillo"></iframe>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container footer-content">
-            <div class="footer-col">
-                <img src="img/dra-natasha-castillo-logo-dermatologia.png" alt="Logo Dra Natasha Castillo Dermatologa Salta" class="footer-logo" loading="lazy">
-                <p>Dermatología y medicina estética clínica en Salta.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Enlaces Rápidos</h4>
-                <ul>
-                    <li><a href="#sobre-mi">Dra. Castillo</a></li>
-                    <li><a href="#servicios">Tratamientos Faciales</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Seguime</h4>
-                <div class="social-links">
-                    <a href="https://www.instagram.com/dra.natashacastillo/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://wa.me/5493872206225" target="_blank" rel="noopener" aria-label="Whatsapp"><i class="fab fa-whatsapp"></i></a>
-                    <a href="mailto:dranatashacastillo@gmail.com" rel="noopener" aria-label="Email"><i class="far fa-envelope"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2026 Dra. Natasha Castillo. Todos los derechos reservados.</p>
-        </div>
-    </footer>
-
-    <a href="https://wa.me/5493872206225" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat de Whatsapp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <script src="js/main.js"></script>
-</body>
-</html>
