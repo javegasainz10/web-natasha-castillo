@@ -195,6 +195,7 @@ h2 {
     height: 100%;
     background: linear-gradient(90deg, var(--bg-cream) 10%, rgba(246,236,227,0) 100%);
     z-index: 2;
+    pointer-events: none;
 }
 
 .hero-content {
@@ -295,52 +296,77 @@ h2 {
     z-index: 10000;
 }
 
-/* --- RESPONSIVE MOBILE (El Fix está aquí) --- */
+/* --- MOBILE RESPONSIVE (FIX DEFINITIVO) --- */
 @media (max-width: 768px) {
     
     .hero {
+        display: flex;
         flex-direction: column;
         height: auto;
-        padding-top: 0;
-        text-align: center;
+        padding-top: 0 !important;
+        background-color: var(--bg-cream);
     }
 
+    /* Contenedor de imagen en móvil */
     .hero-image-container {
         position: relative;
         width: 100%;
-        height: 380px !important; /* Altura fija para el impacto visual */
+        height: 400px !important;
         order: -1;
-        margin-bottom: 20px;
+        margin-bottom: 0;
+        z-index: 1;
+        overflow: hidden;
     }
 
     .hero-image-container img {
         width: 100%;
         height: 100% !important;
-        object-fit: cover !important; /* Mantiene la imagen llenando el contenedor */
-        object-position: center;
+        object-fit: cover !important;
+        object-position: center top;
+        display: block;
     }
 
-    /* FIX: Overlay vertical para móvil */
+    /* FIX: Overlay vertical reforzado para móvil */
     .hero-image-container .overlay {
+        display: block !important;
+        position: absolute !important;
+        top: auto !important;
+        bottom: 0 !important;
+        left: 0;
+        width: 100%;
+        height: 180px !important; /* Altura del difuminado */
         background: linear-gradient(to bottom, 
-            rgba(246, 236, 227, 0) 60%, 
-            rgba(246, 236, 227, 0.8) 85%, 
-            var(--bg-cream) 100%) !important;
+            rgba(246, 236, 227, 0) 0%, 
+            rgba(246, 236, 227, 0.7) 50%, 
+            rgba(246, 236, 227, 1) 100%) !important;
+        z-index: 10 !important;
     }
 
+    /* Ajuste del contenido para que se una al degradado */
     .hero-content {
-        padding: 0 20px 40px;
+        padding: 40px 20px;
+        width: 100%;
+        background-color: var(--bg-cream); /* Fondo sólido igual al final del degradado */
+        margin-top: -5px; /* Elimina cualquier gap de un pixel */
+        z-index: 5;
     }
 
     .hero-buttons {
         display: flex;
         flex-direction: column;
         gap: 15px;
+        width: 100%;
+        margin-top: 25px !important;
     }
 
-    .btn-outline { margin-left: 0; }
+    .hero-buttons .btn-primary, 
+    .hero-buttons .btn-outline {
+        width: 100%;
+        margin: 0;
+        padding: 14px 0;
+    }
 
-    /* Ajuste Secciones Split */
+    /* Layouts Partidos en Móvil */
     .split-layout {
         grid-template-columns: 1fr;
         gap: 30px;
@@ -348,22 +374,17 @@ h2 {
 
     .split-layout.reverse .image-box { order: 0; }
 
-    #sobre-mi .image-box {
-        width: 80%;
-        margin: 0 auto 20px;
-    }
-
     .image-box img {
         height: auto;
+        max-height: 400px;
+        object-fit: cover;
         box-shadow: 10px 10px 0px var(--secondary);
     }
 
-    /* Iconos estéticos en móvil */
-    .aesthetic-container { height: 200px; }
-    .aesthetic-circle { width: 160px; height: 160px; }
-    .aesthetic-circle i { font-size: 3.5rem; }
-
-    /* Navbar Móvil */
+    /* Ajustes visuales extra móvil */
+    h1 { font-size: 1rem !important; }
+    .h2-lookalike { font-size: 2.2rem !important; }
+    
     .nav-links { display: none; }
     .menu-toggle { display: block; }
 }
