@@ -12,7 +12,7 @@
 
     <meta property="og:title" content="Dra. Natasha Castillo - Dermatología y Estética en Salta">
     <meta property="og:description" content="Especialista en cuidado de la piel, Botox y Armonización Facial. Tu piel en manos expertas.">
-    <meta property="og:image" content="https://dranatashacastillo.com/img/dermatologa-en-salta-estetica-facial-portada.webp">
+    <meta property="og:image" content="https://dranatashacastillo.com/img/dermatologa-en-salta-estetica-facial-portada.jpg">
     <meta property="og:url" content="https://dranatashacastillo.com/">
     <meta property="og:type" content="website">
 
@@ -91,9 +91,11 @@
             .hero-image-container {
                 position: relative;
                 width: 100%;
-                /* Altura forzada para que se vea bien en móvil */
-                height: 60vh !important; 
-                min-height: 400px; /* Mínimo para pantallas muy pequeñas */
+                
+                /* AJUSTE DE ZOOM: Bajamos la altura para ver más imagen a los costados */
+                height: 35vh !important;  /* Antes 50vh */
+                min-height: 280px;        /* Antes 400px */
+                
                 order: -1; 
                 margin-bottom: 20px;
                 margin-top: 0 !important;
@@ -103,9 +105,7 @@
             .hero-image-container img {
                 width: 100%;
                 height: 100% !important; 
-                /* Recorta los laterales para mantener la altura */
                 object-fit: cover !important; 
-                /* Mantiene el foco en la parte superior (rostro) */
                 object-position: center top; 
                 display: block;
             }
@@ -119,7 +119,7 @@
                 height: 100%;
                 z-index: 2;
                 background: linear-gradient(to bottom, 
-                    rgba(246,236,227,0) 50%, 
+                    rgba(246,236,227,0) 40%, 
                     var(--bg-cream, #F6ECE3) 100%
                 ) !important;
                 pointer-events: none; 
@@ -310,7 +310,7 @@
 
     <header class="hero">
         <div class="hero-image-container">
-            <img src="img/dermatologa-en-salta-estetica-facial-portada.webp" alt="Dra. Natasha Castillo Dermatologa especialista en estetica medica y botox">
+            <img src="img/dermatologa-en-salta-estetica-facial-portada.jpg" alt="Dra. Natasha Castillo Dermatologa especialista en estetica medica y botox">
             <div class="overlay"></div>
         </div>
         <div class="hero-content container">
