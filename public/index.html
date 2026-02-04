@@ -12,7 +12,7 @@
 
     <meta property="og:title" content="Dra. Natasha Castillo - Dermatología y Estética en Salta">
     <meta property="og:description" content="Especialista en cuidado de la piel, Botox y Armonización Facial. Tu piel en manos expertas.">
-    <meta property="og:image" content="https://dranatashacastillo.com/img/dermatologa-en-salta-estetica-facial-portada.jpg">
+    <meta property="og:image" content="https://dranatashacastillo.com/img/dermatologa-en-salta-estetica-facial-portada.webp">
     <meta property="og:url" content="https://dranatashacastillo.com/">
     <meta property="og:type" content="website">
 
@@ -87,35 +87,42 @@
                 display: flex;
             }
 
+            /* CORRECCIÓN DE IMAGEN Y DIFUMINADO */
             .hero-image-container {
                 position: relative;
                 width: 100%;
-                height: auto !important; 
-                min-height: 250px;
+                /* Altura forzada para que se vea bien en móvil */
+                height: 50vh !important; 
+                min-height: 400px; /* Mínimo para pantallas muy pequeñas */
                 order: -1; 
                 margin-bottom: 20px;
                 margin-top: 0 !important;
+                overflow: hidden;
             }
             
             .hero-image-container img {
                 width: 100%;
-                height: auto !important; 
-                object-fit: contain; 
+                height: 100% !important; 
+                /* Recorta los laterales para mantener la altura */
+                object-fit: cover !important; 
+                /* Mantiene el foco en la parte superior (rostro) */
+                object-position: center top; 
                 display: block;
             }
 
-            /* --- CORRECCIÓN DEL DIFUMINADO VERTICAL --- */
+            /* Overlay con difuminado hacia el color crema (#F6ECE3) */
             .hero-image-container .overlay {
-                position: absolute !important; /* Forzar posición absoluta */
+                position: absolute !important;
                 top: 0;
                 left: 0;
                 width: 100%;
                 height: 100%;
-                z-index: 2; /* Asegurar que esté ENCIMA de la imagen */
-                
-                /* Degradado: Transparente arriba -> Color Crema sólido abajo */
-                background: linear-gradient(to bottom, rgba(246,236,227,0) 60%, var(--bg-cream) 100%) !important;
-                pointer-events: none; /* Permite tocar la imagen si fuera necesario */
+                z-index: 2;
+                background: linear-gradient(to bottom, 
+                    rgba(246,236,227,0) 50%, 
+                    var(--bg-cream, #F6ECE3) 100%
+                ) !important;
+                pointer-events: none; 
             }
 
             .hero-content { padding: 0 20px; width: 100%; }
@@ -303,7 +310,7 @@
 
     <header class="hero">
         <div class="hero-image-container">
-            <img src="img/dermatologa-en-salta-estetica-facial-portada.jpg" alt="Dra. Natasha Castillo Dermatologa especialista en estetica medica y botox">
+            <img src="img/dermatologa-en-salta-estetica-facial-portada.webp" alt="Dra. Natasha Castillo Dermatologa especialista en estetica medica y botox">
             <div class="overlay"></div>
         </div>
         <div class="hero-content container">
